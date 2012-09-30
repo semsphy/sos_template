@@ -359,8 +359,4 @@ if(!function_exists('_log')){
     }
   }
 }
-function test_upload($value='')
-{
-  echo "hello world";
-}
 ?>
