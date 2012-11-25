@@ -347,8 +347,10 @@ function get_between($input, $start, $end)
   return $substr; 
 }
 
-
-add_filter('woo_shortcode_post_author_posts_link',function(){
+/**
+ * Overwrited author post link
+ */
+function author_posts_link_gplus(){
     $defaults = array(
       'before' => '',
       'after' => ''
@@ -361,7 +363,9 @@ add_filter('woo_shortcode_post_author_posts_link',function(){
     if (!empty($google_plus))
         $author = "<a rel='author' href=".esc_url($google_plus).">".get_the_author()."</a>";
     return sprintf('<span class="author vcard">%2$s<span class="fn">%1$s</span>%3$s</span>', $author, $atts['before'], $atts['after']);
-},998);
+}
+add_filter('woo_shortcode_post_author_posts_link','author_posts_link_gplus',998);
+
 
 #debug function in wordpress
 if(!function_exists('_log')){
