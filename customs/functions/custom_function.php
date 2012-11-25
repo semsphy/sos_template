@@ -361,7 +361,7 @@ function author_posts_link_gplus(){
     $author = ob_get_clean();
     $google_plus = get_user_meta(get_the_author_meta('ID'),'google_profile',true);
     if (!empty($google_plus))
-        $author = "<a rel='author' href=".esc_url($google_plus).">".get_the_author()."</a>";
+        $author = "<a target='_blank' rel='author' href=".esc_url($google_plus).">".get_the_author()."</a>";
     return sprintf('<span class="author vcard">%2$s<span class="fn">%1$s</span>%3$s</span>', $author, $atts['before'], $atts['after']);
 }
 add_filter('woo_shortcode_post_author_posts_link','author_posts_link_gplus',998);
