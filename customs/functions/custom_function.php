@@ -347,14 +347,32 @@ function get_between($input, $start, $end)
   return $substr; 
 }
 
+
+add_filter('woo_shortcode_post_author_posts_link',function(){
+    $defaults = array(
+      'before' => '',
+      'after' => ''
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+    ob_start();
+    the_author_posts_link();
+    $author = ob_get_clean();
+    $google_plus = get_user_meta(get_the_author_meta('ID'),'google_profile',true);
+    if (!empty($google_plus))
+        $author = "<a rel='author' href=".esc_url($google_plus).">".get_the_author()."</a>";
+    return sprintf('<span class="author vcard">%2$s<span class="fn">%1$s</span>%3$s</span>', $author, $atts['before'], $atts['after']);
+},998);
+
 #debug function in wordpress
 if(!function_exists('_log')){
   function _log( $message ) {
-    if( WP_DEBUG === true ){
+    if( SOS_DEBUG === true ){
+      $bt = debug_backtrace();
+      $caller = array_shift($bt);
       if( is_array( $message ) || is_object( $message ) ){
-        error_log( print_r( $message, true ) );
+        file_put_contents('/tmp/sos_log.txt',"\n".date('d/m/Y').' '.$caller['file'].' ['.$caller['line']."]: \n".print_r( $message, true ),FILE_APPEND);
       } else {
-        error_log( $message );
+        file_put_contents('/tmp/sos_log.txt',"\n".date('d/m/Y').' '.$caller['file'].' ['.$caller['line']."]: \n".$message,FILE_APPEND);
       }
     }
   }
