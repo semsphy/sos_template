@@ -37,6 +37,7 @@
 </style>
 </head>
 <body id='custom_css' <?php body_class(); ?>>
+<?php include_once("analyticstracking.php") ?>
 <?php woo_top(); ?>
 <div id="wrapper">        
 	<?php woo_header_before(); ?>
