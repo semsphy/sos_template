@@ -51,13 +51,6 @@ add_filter( 'tiny_mce_version', 'my_refresh_mce');
  * @return [string]          [html tag]
  */
 function sos_linux_code( $atts, $content = null ) {
-   extract(shortcode_atts(array(  'type' => 'normal',
-                    'size' => '',
-                    'style' => '',
-                    'border' => '',
-                    'icon' => ''), $atts));
-
-    //return '<div class="woo-sc-box '.$type.' '.$size.' '.$style.' '.$border.'"'.$custom.'>' . do_shortcode( woo_remove_wpautop($content) ) . '</div>';
     return '<pre class="linux-code"><code>'.do_shortcode( sos_remove_wp_auto_p($content)).'</code></pre>';
 }
 add_shortcode( 'linux-code', 'sos_linux_code' );
@@ -69,17 +62,49 @@ add_shortcode( 'linux-code', 'sos_linux_code' );
  * @return [type]          [description]
  */
 function sos_indent_code( $atts, $content = null ) {
-   extract(shortcode_atts(array(  'type' => 'normal',
-                    'size' => '',
-                    'style' => '',
-                    'border' => '',
-                    'icon' => ''), $atts));
     return "<span style='margin-left: 30px;'>".do_shortcode( sos_remove_wp_auto_p($content)).'</span>';
 }
 add_shortcode( 'indent-code', 'sos_indent_code' );
 
+/**
+ * [step code for]
+ * 
+ */
+add_shortcode( 'step-code', function($atts,$content){
+    
+  extract(shortcode_atts( 
+                        array(  'class' => 'step-code',
+                                'color' => '#15c;'), 
+                        $atts)
+        );
+    return  "<span class='{$class}' style='color: {$color}'>".
+                do_shortcode( sos_remove_wp_auto_p($content)).
+            '</span>';
+});
 
+/**
+ * Apply order list in khmer with the shortcode step-code
+ * I force to apply the shortcode first, before add filter to content
+ */
+add_filter( 'the_content', 'do_shortcode',10);
+add_filter( 'the_content', function($content){
+    preg_match_all("/<(\/)?(span) class=[\'|\"]step-code-[\d][\'|\"] [^>]*>/i", $content, $matches);
+    $T_search  = $matches[0];
+    if(is_array($T_search) && sizeof($T_search)){
+        $T_array_flip = array_flip($T_search);
+        
+        $T_replace = array_map(function($item) use($T_array_flip){
+            return $item.khmer_number(++$T_array_flip[$item].'. ');
+        }, $T_search);
+        
+        return str_replace($T_search, $T_replace, $content);
+    }
+    return $content;
+});
 
+/**
+ * Remove the auto-added <P> from content
+ */
 if ( ! function_exists( 'sos_remove_wp_auto_p' ) ) {
   /**
    * [remove the tag p from selected conttent]
