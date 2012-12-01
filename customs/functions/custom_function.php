@@ -62,6 +62,23 @@ function sos_linux_code( $atts, $content = null ) {
 }
 add_shortcode( 'linux-code', 'sos_linux_code' );
 
+/**
+ * [sos_indent_code shortcut code for indentation in khmer]
+ * @param  [type] $atts    [description]
+ * @param  [type] $content [description]
+ * @return [type]          [description]
+ */
+function sos_indent_code( $atts, $content = null ) {
+   extract(shortcode_atts(array(  'type' => 'normal',
+                    'size' => '',
+                    'style' => '',
+                    'border' => '',
+                    'icon' => ''), $atts));
+    return "<span style='margin-left: 30px;'>".do_shortcode( sos_remove_wp_auto_p($content)).'</span>';
+}
+add_shortcode( 'indent-code', 'sos_indent_code' );
+
+
 
 if ( ! function_exists( 'sos_remove_wp_auto_p' ) ) {
   /**
