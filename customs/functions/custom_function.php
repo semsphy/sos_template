@@ -67,8 +67,8 @@ function sos_indent_code( $atts, $content = null ) {
 add_shortcode( 'indent-code', 'sos_indent_code' );
 
 /**
- * [step code for]
- * 
+ * @author Sophy SEM
+ * Create shortcode for order list in khmer number
  */
 add_shortcode( 'step-code', function($atts,$content){
     
@@ -113,7 +113,7 @@ if ( ! function_exists( 'sos_remove_wp_auto_p' ) ) {
    */
   function sos_remove_wp_auto_p( $content ) {
     $content = do_shortcode( shortcode_unautop( $content ) );
-    $content = preg_replace( '#^<\/p>|^<br \/>|<p>$#', '', $content );
+    $content = preg_replace( '#^<\/p>|^<br \/>|<p>|<br>$#', '', $content );
     return $content;
   }
 }
