@@ -21,6 +21,7 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
+<link  href="<?=get_template_directory_uri()?>/favicon.ico" rel="icon" type="image/x-icon" />
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <title><?php woo_title(); ?></title>
 <?php woo_meta(); ?>
