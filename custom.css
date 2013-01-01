@@ -356,3 +356,8 @@ and modify it to your liking.
 #custom_css  #content #main-sidebar-container #main .woo-pagination span{
 	font: 12px Siemreap,'Ubuntu', arial, sans-serif;
 }
+
+#custome_css .crayon-syntax-inline{
+    padding:0px;
+    margin:0px;
+}
