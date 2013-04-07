@@ -347,6 +347,10 @@ and modify it to your liking.
 	font-size   : 16px;
 	font-family : 'Ubuntu Mono','Courier New',Courier,monospace;
 }
+
+#custom_css  #content #main-sidebar-container #main .entry p{
+    margin-top: 3px;
+}
 #custom_css  #content #main-sidebar-container #main .entry pre.linux-code:hover {
 	background: url("images/lincode2.gif") no-repeat scroll 0 0 #F8ECEC;
 	z-index   : 10000;
