@@ -864,7 +864,7 @@ if (!function_exists('woo_slider_magazine')) {
 					$html .= '<a href="' . $url . '" title="' . the_title_attribute( array( 'echo' => 0 ) ) . '">' . woo_image('width=' . $args['width'] . '&height=' . $args['height'] . '&link=img&return=true') . '</a>' . "\n";
 	                $html .= '<div class="content">' . "\n";              
 	                if ( $woo_options['woo_slider_magazine_title'] == 'true' ) {
-	                	$html .= '<h2 class="title"><a href="' . $url . '" title="' . the_title_attribute( array( 'echo' => 0 ) ) . '">' . get_the_title( $post->ID ) . '</a></h2>'; }
+	                	$html .= '<h2 class="title entry-title"><a href="' . $url . '" title="' . the_title_attribute( array( 'echo' => 0 ) ) . '">' . get_the_title( $post->ID ) . '</a></h2>'; }
 	                
 	                if ( $woo_options['woo_slider_magazine_excerpt'] == 'true' ) {
 	                	$html .= '<div class="excerpt"><p>' . woo_text_trim( get_the_excerpt(), $excerpt_length ) . '</p></div>' . "\n";

@@ -115,7 +115,7 @@ if ( ! function_exists( 'woo_shortcode_post_date' ) ) {
 		);
 		$atts = shortcode_atts( $defaults, $atts );
 		
-		$output = sprintf( '<abbr class="date time published" title="%5$s">%1$s%3$s%4$s%2$s</abbr> ', $atts['before'], $atts['after'], $atts['label'], get_the_time($atts['format']), get_the_time('Y-m-d\TH:i:sO') );
+		$output = sprintf( '<abbr class="date time published updated" title="%5$s">%1$s%3$s%4$s%2$s</abbr> ', $atts['before'], $atts['after'], $atts['label'], get_the_time($atts['format']), get_the_time('Y-m-d\TH:i:sO') );
 		
 		return apply_filters( 'woo_shortcode_post_date', $output, $atts );
 		
@@ -147,7 +147,7 @@ if ( ! function_exists( 'woo_shortcode_post_time' ) ) {
 		);
 		$atts = shortcode_atts( $defaults, $atts );
 		
-		$output = sprintf( '<abbr class="time published" title="%5$s">%1$s%3$s%4$s%2$s</abbr> ', $atts['before'], $atts['after'], $atts['label'], get_the_time($atts['format']), get_the_time('Y-m-d\TH:i:sO') );
+		$output = sprintf( '<abbr class="time published updated" title="%5$s">%1$s%3$s%4$s%2$s</abbr> ', $atts['before'], $atts['after'], $atts['label'], get_the_time($atts['format']), get_the_time('Y-m-d\TH:i:sO') );
 		
 		return apply_filters( 'woo_shortcode_post_time', $output, $atts );
 		
