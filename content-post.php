@@ -19,12 +19,12 @@
  */
  global $woo_options;
  
- $title_before = '<h1 class="title">';
+ $title_before = '<h1 class="title entry-title">';
  $title_after = '</h1>';
  
  if ( ! is_single() ) {
  
- 	$title_before = '<h2 class="title">';
+ 	$title_before = '<h2 class="title entry-title">';
  	$title_after = '</h2>';
  
 	$title_before = $title_before . '<a href="' . get_permalink( get_the_ID() ) . '" rel="bookmark" title="' . the_title_attribute( array( 'echo' => 0 ) ) . '">';
